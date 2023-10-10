@@ -15,7 +15,7 @@ class TestCustomDataFetcher(unittest.TestCase):
         mock_requests_get.return_value = mock_response
 
         # Call the method under test
-        result = data_fetcher.get_custom_data_from_url("https://sef.podkolzin.consulting/api/users/lastSeen", 2)
+        result = data_fetcher.get_custom_data_from_url("https://sef.podkolzin.consulting/api/users/lastSeen", 2, 20)
 
         # Assert that the method returns the expected data
         self.assertEqual(result, ["user1", "user2"])

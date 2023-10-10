@@ -4,6 +4,7 @@ from data_fetcher import CustomDataFetcher
 from translator import CustomTranslator
 from online_count import UserStatsController
 from UserStatsUserController import UserStatsHistoryController
+from users_online_predictor import UserOnlinePredictor
 
 def main():
     custom_base_url = "https://sef.podkolzin.consulting/api/users/lastSeen"
@@ -36,7 +37,7 @@ def main():
     history_controller = UserStatsHistoryController(custom_data)  # Передаем custom_data
 
     while True:
-        print("Enter '1' to check users online stats, '2' to get user history, '3' to list all users, 'q' to quit: ")
+        print("Enter '1' to check users online stats, '2' to get user history, '3' to list all users, '4' to predict online of users or 'q' to quit: ")
         command = input()
 
         if command == '1':
@@ -57,10 +58,15 @@ def main():
             for user in custom_users:
                 translated_last_seen = custom_translator.translate(user.last_seen, custom_lang)
                 print(f"Username: {user.username}, Last Seen: {translated_last_seen}, Is Online: {user.is_online}")
+        elif command == '4':
+            user_online_predictor = UserOnlinePredictor(custom_users)
+            date = input("Enter the date (YYYY-MM-DD-HH:MM) to predict online users: ")
+            prediction_result = user_online_predictor.predict_users_online(date)
+            print(f"Predicted online users at {date}: {prediction_result['onlineUsers']}")
         elif command == 'q':
             break
         else:
-            print("Invalid command. Please enter '1', '2', '3', or 'q'.")
+            print("Invalid command. Please enter '1', '2', '3', '4' or 'q'.")
 
 if __name__ == "__main__":
     main()

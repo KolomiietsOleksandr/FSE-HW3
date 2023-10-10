@@ -6,11 +6,10 @@ from UserStatsUserController import UserStatsHistoryController
 class TestUserStatsHistoryController(unittest.TestCase):
 
     def setUp(self):
-        # Подготавливаем данные для тестов
         custom_data = [
-            {"nickname": "user1", "lastSeenDate": "2023-10-01T12:00:00.000Z", "isOnline": True},
-            {"nickname": "user2", "lastSeenDate": "2023-10-01T13:00:00.000Z", "isOnline": False},
-            {"nickname": "user3", "lastSeenDate": "2023-10-01T14:00:00.000Z", "isOnline": True},
+            {"nickname": "user1", "lastSeenDate": "2023-10-01T12:00:00.000Z", "isOnline": True, "lastSeenTime": None},
+            {"nickname": "user2", "lastSeenDate": "2023-10-01T13:00:00.000Z", "isOnline": False, "lastSeenTime": None},
+            {"nickname": "user3", "lastSeenDate": "2023-10-01T14:00:00.000Z", "isOnline": True, "lastSeenTime": None},
         ]
         self.controller = UserStatsHistoryController(custom_data)
 

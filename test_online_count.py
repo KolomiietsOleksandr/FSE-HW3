@@ -9,10 +9,10 @@ class TestUserStatsController(unittest.TestCase):
 
         controller = UserStatsController()
         controller.users = [
-            CustomUser("user1", "2023-10-08T10:00:00.000000", True),
-            CustomUser("user2", "2023-10-08T11:00:00.000000", False),
-            CustomUser("user3", "online", True),
-            CustomUser("user4", "2023-10-08T09:00:00.000000", False),
+            CustomUser("user1", "2023-10-08T10:00:00.000000", True, None),
+            CustomUser("user2", "2023-10-08T11:00:00.000000", False, None),
+            CustomUser("user3", "online", True, None),
+            CustomUser("user4", "2023-10-08T09:00:00.000000", False, None),
         ]
 
         date1 = datetime(2023, 10, 8, 10, 30, 0)

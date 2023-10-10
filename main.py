@@ -5,6 +5,7 @@ from translator import CustomTranslator
 from online_count import UserStatsController
 from UserStatsUserController import UserStatsHistoryController
 from users_online_predictor import UserOnlinePredictor
+from user_online_predictor import UserOnlinePredictorWithPrediction
 
 def main():
     custom_base_url = "https://sef.podkolzin.consulting/api/users/lastSeen"
@@ -34,10 +35,10 @@ def main():
     custom_translator = CustomTranslator()
     custom_user_list_generator.custom_when_online(custom_users, current_time)
 
-    history_controller = UserStatsHistoryController(custom_data)  # Передаем custom_data
+    history_controller = UserStatsHistoryController(custom_data)  # Передаємо custom_data
 
     while True:
-        print("Enter '1' to check users online stats, '2' to get user history, '3' to list all users, '4' to predict online of users or 'q' to quit: ")
+        print("Enter '1' to check users online stats, '2' to get user history, '3' to list all users, '4' to predict online of users, '5' to predict online status of a specific user, or 'q' to quit: ")
         command = input()
 
         if command == '1':
@@ -63,10 +64,20 @@ def main():
             date = input("Enter the date (YYYY-MM-DD-HH:MM) to predict online users: ")
             prediction_result = user_online_predictor.predict_users_online(date)
             print(f"Predicted online users at {date}: {prediction_result['onlineUsers']}")
+        elif command == '5':
+            user_id = input("Enter the user ID: ")
+            date = input("Enter the date (YYYY-MM-DD-HH:MM): ")
+            tolerance = float(input("Enter the tolerance (e.g., 0.85): "))
+            user_online_predictor = UserOnlinePredictorWithPrediction(custom_users)
+            prediction_result = user_online_predictor.predict_user_online(user_id, date, tolerance)
+            will_be_online = prediction_result['willBeOnline']
+            online_chance = prediction_result['onlineChance']
+            print(f"The user will be online on {date}: {will_be_online}")
+            print(f"Online chance: {online_chance}")
         elif command == 'q':
             break
         else:
-            print("Invalid command. Please enter '1', '2', '3', '4' or 'q'.")
+            print("Invalid command. Please enter '1', '2', '3', '4', '5', or 'q'.")
 
 if __name__ == "__main__":
     main()

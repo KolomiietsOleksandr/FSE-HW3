@@ -17,6 +17,7 @@ class CustomDataFetcher:
                     remaining_custom_users = desired_custom_user_count - len(custom_all_data)
                     custom_users_to_add = min(len(custom_user_data), remaining_custom_users)
                     custom_all_data.extend(custom_user_data[:custom_users_to_add])
+                    print(custom_all_data)
                 except json.JSONDecodeError as ex:
                     print(f"Failed to parse JSON: {ex}")
             else:

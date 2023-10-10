@@ -8,7 +8,7 @@ class CustomUserListGenerator:
             username = user["nickname"]
             last_seen_date = user["lastSeenDate"]
             is_online = bool(user["isOnline"])
-            last_seen_time = user["lastSeenTime"]
+            #last_seen_time = user["lastSeenTime"]
 
             last_seen_time = None
 

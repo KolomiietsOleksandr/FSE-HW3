@@ -7,9 +7,9 @@ class TestUserStatsHistoryController(unittest.TestCase):
 
     def setUp(self):
         custom_data = [
-            {"nickname": "user1", "lastSeenDate": "2023-10-01T12:00:00.000Z", "isOnline": True, "lastSeenTime": None},
-            {"nickname": "user2", "lastSeenDate": "2023-10-01T13:00:00.000Z", "isOnline": False, "lastSeenTime": None},
-            {"nickname": "user3", "lastSeenDate": "2023-10-01T14:00:00.000Z", "isOnline": True, "lastSeenTime": None},
+            {"nickname": "user1", "lastSeenDate": "2023-10-01T12:00:00.000Z", "isOnline": True, "lastSeenTime": datetime(2023, 10, 1, 12, 0)},
+            {"nickname": "user2", "lastSeenDate": "2023-10-01T13:00:00.000Z", "isOnline": False, "lastSeenTime": datetime(2023, 10, 1, 13, 0)},
+            {"nickname": "user3", "lastSeenDate": "2023-10-01T14:00:00.000Z", "isOnline": True, "lastSeenTime": datetime(2023, 10, 1, 14, 0)},
         ]
         self.controller = UserStatsHistoryController(custom_data)
 

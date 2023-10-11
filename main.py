@@ -10,20 +10,8 @@ from user_online_predictor import UserOnlinePredictorWithPrediction
 def main():
     custom_base_url = "https://sef.podkolzin.consulting/api/users/lastSeen"
 
-    while True:
-        try:
-            desired_custom_count = int(input("Enter the number of users you want to use: "))
-            max_offset = int(input("Enter max number of offset you want to use: "))
-
-            if desired_custom_count > 0:
-                break
-            else:
-                print("The desired number of users must be greater than zero.")
-        except ValueError:
-            print("Enter the correct number.")
-
     custom_data_fetcher = CustomDataFetcher()
-    custom_data = custom_data_fetcher.get_custom_data_from_url(custom_base_url, desired_custom_count, max_offset)
+    custom_data = custom_data_fetcher.get_custom_data_from_url(custom_base_url)
 
     custom_user_list_generator = CustomUserListGenerator()
     custom_users = custom_user_list_generator.get_custom_users(custom_data)
@@ -48,7 +36,7 @@ def main():
             print(f"Users Online on {date}: {result.UsersOnline}")
         elif command == '2':
             user_id = input("Enter the user ID: ")
-            date = input("Enter the date (YYYY-MM-DD-HH:MM): ")
+            date = input("Enter the date (YYYY-DD-MM-HH:MM): ")
             history_result, status_code = history_controller.get_user_history(user_id, date)
             if status_code == 404:
                 print("User not found.")

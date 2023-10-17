@@ -8,7 +8,7 @@ class UserOnlinePredictor:
         try:
             requested_datetime = datetime.strptime(requested_datetime_str, '%Y-%d-%m-%H:%M')
         except ValueError:
-            return "Invalid date format."
+            return {"error": "Invalid date format."}
 
         history_start = requested_datetime - timedelta(days=7)
 

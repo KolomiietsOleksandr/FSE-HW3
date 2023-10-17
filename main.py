@@ -13,6 +13,8 @@ def main():
     custom_data_fetcher = CustomDataFetcher()
     custom_data = custom_data_fetcher.get_custom_data_from_url(custom_base_url)
 
+    print(custom_data)
+
     custom_user_list_generator = CustomUserListGenerator()
     custom_users = custom_user_list_generator.get_custom_users(custom_data)
     current_time = datetime.utcnow()
